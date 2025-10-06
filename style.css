@@ -1,0 +1,374 @@
+/* ==========================
+   HEADER STYLES
+========================== */
+header {
+  background: url('./image/head home back.jpg') no-repeat center/cover;
+  height: 200px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+  font-family: "Libre Baskerville", serif;
+  font-weight: 400;
+}
+
+/* ==========================
+   HOME SECTION
+========================== */
+.home-section {
+  height: 100vh;
+  background: url('./image/home.avif') no-repeat center/cover;
+  position: relative;
+  padding: 100px 1rem 0;
+  font-family: "Libre Baskerville", serif;
+}
+
+.home-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1;
+}
+
+.home-section .container,
+.home-card .card-img-overlay {
+  position: relative;
+  z-index: 2;
+}
+
+.home-section h1 {
+  font-size: 4rem;
+  color: #fff;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+}
+
+/* ==========================
+   HOME CARDS (Appetizers/Main/etc.)
+========================== */
+.home-card {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.home-card .card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.home-card .card-img-overlay {
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, backdrop-filter 0.3s;
+}
+
+.home-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.home-card:hover .card-img {
+  transform: scale(1.1);
+}
+
+.home-card:hover .card-img-overlay {
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(2px);
+}
+
+.home-card .card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.home-card:hover .card-title {
+  transform: scale(1.1);
+  color: #ffd700;
+}
+
+/* ==========================
+   MENU CARDS (Appetizer/Main/Desserts/Beverages)
+========================== */
+.card.h-100 {
+  max-width: 350px;
+  margin: 0 auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.card.h-100:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.card.h-100 .card-img-top {
+  transition: transform 0.3s ease;
+}
+
+.card.h-100:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+.card.h-100 .card-title {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.card.h-100:hover .card-title {
+  transform: scale(1.05);
+  color: #ff7f50;
+}
+
+/* ==========================
+   OPTIONS BOXES
+========================== */
+.options-container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.option-box {
+  flex: 1 1 30%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px 10px;
+  text-align: center;
+  background-color: #f8f9fa;
+}
+
+.option-box .price {
+  display: block;
+  font-weight: bold;
+  margin-top: 3px;
+  color: #333;
+}
+
+/* ==========================
+   DROPDOWN NAVBAR
+========================== */
+/* Desktop hover dropdown */
+@media (min-width: 992px) {
+  .navbar .dropdown-menu {
+    display: block;           /* keep in DOM for transition */
+    position: absolute;       /* remove from flow */
+    top: 100%;                /* below parent */
+    left: 0;
+    visibility: hidden;       /* hidden by default */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    margin-top: 0;
+    z-index: 1000;
+  }
+
+  .navbar .dropdown:hover .dropdown-menu {
+    visibility: visible;      /* show on hover */
+    opacity: 1;
+    transform: translateY(0); /* slide up */
+  }
+
+  .navbar .dropdown-toggle::after {
+    display: none;            /* hide arrow on desktop */
+  }
+}
+
+/* Mobile: let Bootstrap JS handle click dropdown */
+@media (max-width: 991.98px) {
+  .navbar .dropdown-menu {
+    position: static;         /* flow normally in collapse */
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    transition: none;         /* no hover animation */
+  }
+
+  .navbar .dropdown-toggle::after {
+    display: inline-block;    /* show arrow for toggle */
+  }
+}
+
+/* ==========================
+   RESPONSIVE TEXT & LAYOUT
+========================== */
+@media (max-width: 992px) {
+  header h1,
+  .home-section h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  header h1,
+  .home-section h1 {
+    font-size: 2.5rem;
+  }
+
+  .home-section {
+    height: auto;
+    padding: 50px 1rem;
+  }
+
+  .home-card .card-img {
+    height: 140px;
+  }
+}
+
+@media (max-width: 576px) {
+  header h1,
+  .home-section h1 {
+    font-size: 2rem;
+  }
+
+  .home-section {
+    padding: 30px 1rem;
+  }
+
+  .home-card .card-img {
+    height: 100px;
+  }
+
+  .home-card .card-title,
+  .home-section .lead {
+    font-size: 0.9rem;
+  }
+
+  .option-box {
+    flex: 1 1 45%;
+    margin-bottom: 5px;
+  }
+}
+
+/* ==========================
+   FOOTER STYLES
+========================== */
+footer {
+  position: relative;
+  background: url('./image/footer.avif') no-repeat center/cover; /* Add your background image */
+  color: #fff;
+  padding: 60px 20px 30px;
+  text-align: center;
+  font-family: "Libre Baskerville", serif;
+  overflow: hidden;
+  min-height: 200px;  /* ensures it’s at least 200px tall */
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6); /* dark overlay for readability */
+  z-index: 0;
+}
+
+footer .footer-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+footer h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+footer a {
+  color: #ffd700;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #ff7f50;
+}
+
+/* Footer grid for contact/socials */
+footer .footer-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+footer .footer-grid div {
+  flex: 1 1 200px;
+}
+
+/* Footer bottom */
+footer .footer-bottom {
+  margin-top: 30px;
+  font-size: 0.85rem;
+  border-top: 1px solid rgba(255,255,255,0.3);
+  padding-top: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  footer .footer-grid {
+    flex-direction: column;
+    gap: 15px;
+  }
+  footer h3 {
+    font-size: 1.5rem;
+  }
+}
+
+/* MENU SECTION background effect */
+.menu-section {
+  position: relative;
+  padding: 60px 0;
+  background-image: url("image/menu\ background.jpeg"); /* change filename if needed */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+
+/* dark overlay for readability */
+.menu-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 0;
+}
+
+.menu-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Desktop: keep background fixed */
+@media (min-width: 768px) {
+  .menu-section {
+    background-attachment: fixed;
+  }
+}
+
+/* Mobile fallback: no fixed (avoids bugs on iOS) */
+@media (max-width: 767.98px) {
+  .menu-section {
+    background-attachment: scroll;
+  }
+}
